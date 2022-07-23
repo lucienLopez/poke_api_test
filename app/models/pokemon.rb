@@ -19,4 +19,6 @@
 #
 class Pokemon < ApplicationRecord
   has_and_belongs_to_many :types
+
+  validates :poke_api_id, uniqueness: true, presence: true
 end
