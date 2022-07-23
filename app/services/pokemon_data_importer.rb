@@ -8,6 +8,8 @@ class PokemonDataImporter
     PokeAPI.pokemons { |pokemon_hash| import_pokemon(pokemon_hash) }
   end
 
+  # If we needed to speed this import, and as long as we only import type names
+  # We could remove this method and import types through pokemons hashes
   def self.import_types
     PokeAPI.types { |type_hash| import_type(type_hash) }
   end
