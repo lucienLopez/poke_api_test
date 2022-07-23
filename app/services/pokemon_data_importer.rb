@@ -15,12 +15,27 @@ class PokemonDataImporter
   end
 
   def import_pokemon(pokemon_hash)
-    puts "pokemon_hash: #{pokemon_hash['name']}"
-    # TODO
+    # ignore pokemons we already imported
+    return if Pokemon.exists?(poke_api_id: pokemon_hash['id'])
+
+    Pokemon.create(
+      poke_api_id: pokemon_hash['id'],
+      name: pokemon_hash['name'],
+      base_experience: pokemon_hash['base_experience'],
+      height: pokemon_hash['height'],
+      is_default: pokemon_hash['is_default'],
+      order: pokemon_hash['order'],
+      weight: pokemon_hash['weight'],
+    )
   end
 
   def import_type(type_hash)
-    puts "type_hash: #{type_hash['name']}"
-    # TODO
+    # ignore types we already imported
+    return if Type.exists?(poke_api_id: type_hash['id'])
+
+    Type.create(
+      poke_api_id: type_hash['id'],
+      name: type_hash['name'],
+    )
   end
 end
