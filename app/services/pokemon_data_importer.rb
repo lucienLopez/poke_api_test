@@ -1,23 +1,20 @@
 class PokemonDataImporter
-  def call
+  def self.call
     import_pokemons
     import_types
   end
 
   private
 
-  def import_pokemons
+  def self.import_pokemons
     PokeAPI.pokemons { |pokemon_hash| import_pokemon(pokemon_hash) }
   end
 
-  def import_types
+  def self.import_types
     PokeAPI.types { |type_hash| import_type(type_hash) }
   end
 
-  def import_pokemon(pokemon_hash)
-    # ignore pokemons we already imported
-    return if Pokemon.exists?(poke_api_id: pokemon_hash['id'])
-
+  def self.import_pokemon(pokemon_hash)
     Pokemon.find_or_initialize_by(poke_api_id: pokemon_hash['id'])
            .update(
              name: pokemon_hash['name'],
@@ -29,10 +26,7 @@ class PokemonDataImporter
            )
   end
 
-  def import_type(type_hash)
-    # ignore types we already imported
-    return if Type.exists?(poke_api_id: type_hash['id'])
-
+  def self.import_type(type_hash)
     Type.find_or_initialize_by(poke_api_id: type_hash['id']).update(name: type_hash['name'])
   end
 end

@@ -43,6 +43,10 @@ group :development, :test do
 
   # Loads environment variables from `.env` file
   gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
+
+  # testing framework
+  gem 'factory_bot_rails', '~> 6.2'
+  gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
 end
 
 group :development do
