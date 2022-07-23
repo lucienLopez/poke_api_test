@@ -14,6 +14,22 @@ RSpec.describe PokemonDataImporter do
         'name' => 'bulbasaur',
         'order' => 1,
         'weight' => 69,
+        'types' => [
+          {
+            'slot' => 1,
+            'type' => {
+              'name' => 'normal',
+              'url' => 'fake.url'
+            }
+          },
+          {
+            'slot' => 2,
+            'type' => {
+              'name' => 'fighting',
+              'url' => 'fake.url'
+            }
+          }
+        ]
       }
     ).and_yield(
       {
@@ -24,40 +40,31 @@ RSpec.describe PokemonDataImporter do
         'name' => 'ivysaur',
         'order' => 2,
         'weight' => 130,
-      },
+        'types' => [
+          {
+            'slot' => 1,
+            'type' => {
+              'name' => 'normal',
+              'url' => 'fake.url'
+            }
+          }
+        ]
+      }
     )
 
     allow(PokeAPI).to receive(:types).and_yield(
       {
         'id' => 1,
-        'name' => 'normal',
+        'name' => 'normal'
       }
     ).and_yield(
       {
         'id' => 2,
-        'name' => 'fighting',
-      },
+        'name' => 'fighting'
+      }
     )
 
-    PokemonDataImporter.call
-
-    expect(Pokemon.count).to eq(2)
-
-    bulbasaur_pokemon = Pokemon.find_by(poke_api_id: 1)
-    expect(bulbasaur_pokemon.base_experience).to eq(64)
-    expect(bulbasaur_pokemon.height).to eq(7)
-    expect(bulbasaur_pokemon.is_default).to be(true)
-    expect(bulbasaur_pokemon.name).to eq('bulbasaur')
-    expect(bulbasaur_pokemon.order).to eq(1)
-    expect(bulbasaur_pokemon.weight).to eq(69)
-
-    ivysaur_pokemon.reload
-    expect(ivysaur_pokemon.base_experience).to eq(142)
-    expect(ivysaur_pokemon.height).to eq(10)
-    expect(ivysaur_pokemon.is_default).to be(true)
-    expect(ivysaur_pokemon.name).to eq('ivysaur')
-    expect(ivysaur_pokemon.order).to eq(2)
-    expect(ivysaur_pokemon.weight).to eq(130)
+    described_class.call
 
     expect(Type.count).to eq(2)
 
@@ -66,5 +73,23 @@ RSpec.describe PokemonDataImporter do
 
     fighting_type.reload
     expect(fighting_type.name).to eq('fighting')
+
+    expect(Pokemon.count).to eq(2)
+
+    bulbasaur_pokemon = Pokemon.find_by(poke_api_id: 1)
+    expect(bulbasaur_pokemon).to(
+      have_attributes(
+        base_experience: 64, height: 7, is_default: true, name: 'bulbasaur', order: 1, weight: 69
+      )
+    )
+    expect(bulbasaur_pokemon.types).to contain_exactly(fighting_type, normal_type)
+
+    ivysaur_pokemon.reload
+    expect(ivysaur_pokemon).to(
+      have_attributes(
+        base_experience: 142, height: 10, is_default: true, name: 'ivysaur', order: 2, weight: 130
+      )
+    )
+    expect(ivysaur_pokemon.types).to contain_exactly(normal_type)
   end
 end
