@@ -40,6 +40,9 @@ group :development, :test do
   gem 'rubocop-performance', '~> 1.14', '>= 1.14.3'
   gem 'rubocop-rails', '~> 2.15', '>= 2.15.2'
   gem 'rubocop-rspec', '~> 2.12', '>= 2.12.1'
+
+  # Loads environment variables from `.env` file
+  gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
 end
 
 group :development do
@@ -51,6 +54,9 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
+  gem 'annotate', '~> 3.2'
 end
 
 group :test do

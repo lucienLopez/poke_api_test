@@ -14,6 +14,7 @@ Metrics/BlockLength:
   Exclude:
     - config/**/*
     - spec/**/*
+    - lib/tasks/auto_annotate_models.rake
 
 Metrics/LineLength:
   Max: 120
@@ -29,4 +30,6 @@ Lint/AmbiguousBlockAssociation:
 Style/Documentation:
   Enabled: false
 Style/FrozenStringLiteralComment:
+  Enabled: false
+Rails/HasAndBelongsToMany:
   Enabled: false
