@@ -20,7 +20,7 @@ describe 'Pokemons API' do
                  }
                }
 
-        let!(:pokemons)  { create_list(:pokemon, 2) }
+        let!(:pokemons) { create_list(:pokemon, 2) }
         run_test!
       end
     end
@@ -49,7 +49,7 @@ describe 'Pokemons API' do
                  }
                }
 
-        let(:pokemon)  { create(:pokemon) }
+        let(:pokemon) { create(:pokemon) }
         let(:id) { create(:pokemon).id }
         run_test!
       end

@@ -31,6 +31,17 @@ Rails/FilePath:
   Exclude:
     - spec/**/*
 
+# Exceptions for rswag specs
+RSpec/EmptyExampleGroup:
+  Exclude:
+    - spec/integration/*
+RSpec/DescribeClass:
+  Exclude:
+    - spec/integration/*
+RSpec/LetSetup:
+  Exclude:
+    - spec/integration/*
+
 Style/Documentation:
   Enabled: false
 Style/FrozenStringLiteralComment:
