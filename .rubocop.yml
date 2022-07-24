@@ -9,7 +9,7 @@ AllCops:
     - 'config/**/*'
     - 'script/**/*'
     - 'bin/*'
-    - 'vendor/'
+    - 'vendor/**/*'
 
 Metrics/BlockLength:
   Exclude:
