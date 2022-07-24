@@ -1,24 +1,19 @@
-# README
+# Used stack
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
++ [Ruby](http://ruby-lang.org), => `2.7.0`
++ [Rails](http://rubyonrails.org), => `6.1.6`
++ [PostgreSQL](http://www.postgresql.org), => `12.11`
 
-Things you may want to cover:
+# Usage
 
-* Ruby version
+* Installation:
+  - Install gems: `bundle install`
+  - Import pokemons data (see below)
+* Import/update pokemons data: `bundle exec rake pokemons:import`
+* Start server: `bundle exec rails s`
+* Using this API: See `http://localhost:3000/api-docs` after starting the server
 
-* System dependencies
+# Work remaining
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Retrieve more data, like types damage relations
+- Finish specs
