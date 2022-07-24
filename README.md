@@ -1,6 +1,6 @@
 # Used stack
 
-+ [Ruby](http://ruby-lang.org), => `2.7.0`
++ [Ruby](http://ruby-lang.org), => `2.7.6`
 + [Rails](http://rubyonrails.org), => `6.1.6`
 + [PostgreSQL](http://www.postgresql.org), => `12.11`
 
