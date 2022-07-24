@@ -21,5 +21,11 @@ FactoryBot.define do
   factory :pokemon do
     sequence(:name) { |i| "pokemon #{i}" }
     sequence(:poke_api_id) { |i| i }
+
+    base_experience { 64 }
+    height { 10 }
+    is_default { true }
+    order { 1 }
+    weight { 60 }
   end
 end
