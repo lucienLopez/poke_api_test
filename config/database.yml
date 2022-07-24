@@ -82,7 +82,6 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: poke_api_test_production
-  username: poke_api_test
-  password: <%= ENV['POKE_API_TEST_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: utf8
+  pool: 15
