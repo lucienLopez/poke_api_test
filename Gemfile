@@ -34,6 +34,9 @@ gem 'http', '~> 5.1'
 # Generates beautiful API documentation
 gem 'rswag', '~> 2.5', '>= 2.5.1'
 
+# Should be in group :development, :test, but this prevents heroku deployment
+gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -49,7 +52,6 @@ group :development, :test do
 
   # testing framework
   gem 'factory_bot_rails', '~> 6.2'
-  gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
 end
 
 group :development do
